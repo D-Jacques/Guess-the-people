@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
+        {% endblock %}
+
+        {% block javascripts %}
+{% block importmap %}{{ importmap('app') }}{% endblock %}
+        {% endblock %}
+    </head>
+    <body>
+        <div class="h-screen w-100 flex">
+            <nav class="w-2/12 border-r-2">
+                <div class="py-5 mb-5 border-b-4">
+                    <h1 class="text-center">
+                        Guess the people<br>
+                        Backoffice
+                    </h1>
+                </div>
+
+                <div class="text-center mb-3">
+                    <a href="{{path('backoffice_riddle_list')}}">Devinettes</a>
+                </div>
+                <div class="text-center mb-3">
+                    <a href="{{path('backoffice_user_list')}}">Administrateurs</a>
+                </div>
+            </nav>
+            <main class="w-10/12">
+                {% block body %}{% endblock %}
+            </main>
+        </div>
+    </body>
+</html>
