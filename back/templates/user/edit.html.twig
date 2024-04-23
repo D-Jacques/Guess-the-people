@@ -3,11 +3,21 @@
 {% block title %}Edit User{% endblock %}
 
 {% block body %}
-    <h1>Edit User</h1>
+    <div class="container mx-auto px-4 mt-4">
+        <div class="my-2">
+            <h1> Gestion des administrateurs </h1>
+        </div>
+        <div class="flex my-3">
+            <div class="w-1/2">
+                <h2> Editer une devinette </h2>
+            </div>
+        
+            <div class="flex w-1/2 justify-center">
+                <a href="{{path("backoffice_user_list")}}">Retour à la liste</a>
+            </div>
+        </div>
 
-    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+        {{ include('user/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+    </div>
 
-    <a href="{{ path('app_user_index') }}">back to list</a>
-
-    {{ include('user/_delete_form.html.twig') }}
 {% endblock %}

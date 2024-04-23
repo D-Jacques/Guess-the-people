@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route("/backoffice/riddle", "backoffice_riddle_")]
+#[Route("/backoffice/riddle", name: "backoffice_riddle_")]
 class RiddleCardController extends AbstractController {
 
     #[Route("/", "list")]
@@ -25,7 +25,7 @@ class RiddleCardController extends AbstractController {
 
     }
 
-    #[Route("/new", "new")]
+    #[Route("/new", name: "new")]
     public function new(Request $request, EntityManagerInterface $em){
 
         $riddleCard = new RiddleCard();
@@ -50,7 +50,7 @@ class RiddleCardController extends AbstractController {
 
     }
 
-    #[Route("/edit/{riddleCard}", 'edit')]
+    #[Route("/edit/{riddleCard}", name: 'edit')]
     public function edit(RiddleCard $riddleCard, Request $request, EntityManagerInterface $em){
 
         $form = $this->createForm(RiddleCardType::class, $riddleCard);
@@ -71,7 +71,7 @@ class RiddleCardController extends AbstractController {
 
     }
 
-    #[Route('/delete/{riddleCard}', 'delete')]
+    #[Route('/delete/{riddleCard}', name: 'delete')]
     public function delete(RiddleCard $riddleCard, EntityManagerInterface $em){
         
         try{

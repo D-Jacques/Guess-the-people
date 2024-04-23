@@ -34,8 +34,8 @@
                         <td class="mx-auto"><p class="flex justify-center">{{ user.roles ? user.roles|json_encode : '' }}</p></td>
                         <td class="mx-auto">
                             <span class="flex justify-around">
-                                <a href="{{ path('backoffice_user_edit', {'id': user.id}) }}">Editer</a>
-                                <a href="{{ path('backoffice_user_delete', {'id': user.id}) }}">Supprimer</a>
+                                <a href="{{ path('backoffice_user_edit', {'user': user.id}) }}">Editer</a>
+                                <a href="{{ path('backoffice_user_delete', {'user': user.id}) }}">Supprimer</a>
                             </span>
                         </td>
                     </tr>

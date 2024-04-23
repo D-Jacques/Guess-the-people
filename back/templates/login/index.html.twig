@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}BackOffice - Login{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('styles/login.css') }}">
+        {% endblock %}
+
+        {% block javascripts %}
+{% block importmap %}{{ importmap('app') }}{% endblock %}
+        {% endblock %}
+    </head>
+    <body>
+        <main class="">
+            {% if errors %}
+                <div>{{ errors.messageKey|trans(errors.messageData, 'security') }}</div>
+            {% endif %}
+
+            <form class="w-1/2 mx-auto h-60" action="{{ path('backoffice_login_index') }}" method="POST">
+                <div>
+                    <label for="email">Email: </label>
+                    <input type="text" name="email" id="email" value="{{lastUser}}">
+                </div>
+                <div>
+                    <label for="password">Password: </label>
+                    <input type="password" name="password" id="password">
+                </div>
+
+                <input type="hidden" name="_target_path" value="{{ path('backoffice_riddle_list') }}">
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                <div>
+                    <button type"submit">Se connecter</button>
+                </div>
+            </form>
+        </main>
+    </body>
+</html>

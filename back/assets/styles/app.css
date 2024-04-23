@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    background-color: skyblue;
+.background-linear{
+    background-image: linear-gradient(rgb(89, 89, 240) 5%, rgb(185, 185, 255) 30%, rgb(185, 185, 255));
 }
 
 .section-title{

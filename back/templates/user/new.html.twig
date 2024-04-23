@@ -3,9 +3,19 @@
 {% block title %}New User{% endblock %}
 
 {% block body %}
-    <h1>Create new User</h1>
+    <div class="container mx-auto px-4 mt-4">
+        <div class="my-2">
+            <h1> Gestion des administrateurs </h1>
+        </div>
+        <div class="flex my-3">
+            <div class="w-1/2">
+                <h2> Nouvel utilisateur </h2>
+            </div>
 
-    {{ include('user/_form.html.twig') }}
-
-    <a href="{{ path('backoffice_user_list') }}">back to list</a>
+            <div class="flex w-1/2 justify-center">
+                <a href="{{path("backoffice_user_list")}}">Retour à la liste</a>
+            </div>
+        </div>
+        {{ include('user/_form.html.twig') }}
+    </div>
 {% endblock %}
