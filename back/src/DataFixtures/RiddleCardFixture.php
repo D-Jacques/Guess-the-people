@@ -13,8 +13,8 @@ class RiddleCardFixture extends Fixture
 
         $fixtureDatas = [
             0 => [
-                "name" => "Stan Renart",
-                "description" => "Streamer sur twitch dont le personnage viens de l'espace",
+                "name" => "Anthony Kiedis",
+                "description" => "Chanteur du célèbre groupe Red Hot Chili Pepper",
                 "picture" => ""
             ],
             1 => [
