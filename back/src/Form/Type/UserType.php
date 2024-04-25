@@ -6,6 +6,8 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,12 +16,12 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email')
+            ->add('email', EmailType::class)
             // TODO : Essayer d'intégrer une checklist des deux roles ('ROLE_USER', 'ROLE_ADMIN')
             ->add('roles', ChoiceType::class, [
                 'choices' => User::USER_ROLES
             ])
-            ->add('password')
+            ->add('password', PasswordType::class)
         ;
 
         $builder->get('roles')

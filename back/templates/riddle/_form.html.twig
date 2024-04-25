@@ -1,0 +1,28 @@
+<div class="flex py-5 px-10">
+    {# {{ form(form) }} #}
+    {{ form_start(form, {'attr' : { 'class' : 'w-full '} }) }}
+
+        <div>
+            {{form_errors(form)}}
+        </div>
+
+        <div class="flex w-3/4 justify-between">
+            <div class="w-3/5">
+                {{form_row(form.description, {'label': "Description de la devinette"})}}
+            </div>
+
+            <div class="w-1/5">
+                {{form_row(form.name, {'label' : "Réponse"})}}
+            </div>
+        </div>
+
+        <div class="w-1/5 mb-20">
+            {{form_row(form.imageFile)}}
+        </div>
+
+        <div class="img-preview">
+        </div>
+
+        <button class="bg-sky-500 p-2 rounded-md text-sm text-slate-50 font-bold hover:bg-sky-600" type="submit">{{button_label|default("Créer")}}</button>
+    {{ form_end(form)}}
+</div>

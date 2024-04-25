@@ -1,13 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+body{
+    font-family: "Noto Sans", sans-serif;
+}
 
 .background-linear{
     background-image: linear-gradient(rgb(89, 89, 240) 5%, rgb(185, 185, 255) 30%, rgb(185, 185, 255));
 }
 
 .section-title{
-    font-size: 2.1em;
-    margin-top: 2%;
-    margin-bottom: 8%;
+    /* font-size: 2.1em; */
+    /* margin-top: 2%;
+    margin-bottom: 8%; */
 }

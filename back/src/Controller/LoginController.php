@@ -15,6 +15,11 @@ use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface
 class LoginController extends AbstractController
 {
 
+    #[Route('/', name: 'default')]
+    public function default(){
+        return $this->redirectToRoute('backoffice_login_index');
+    }
+
     #[Route('/login', name: 'index')]
     public function index(Request $request, AuthenticationUtils $authenticationUtils): Response
     {

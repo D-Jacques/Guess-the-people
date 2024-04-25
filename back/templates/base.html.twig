@@ -9,11 +9,11 @@
         {% endblock %}
 
         {% block javascripts %}
-{% block importmap %}{{ importmap('app') }}{% endblock %}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
     </head>
     <body>
-        <div class="h-screen w-100 flex background-linear">
+        <div class= "min-h-screen w-100 flex background-linear">
             
             {% include "_fragments/navigation.html.twig" %}
 

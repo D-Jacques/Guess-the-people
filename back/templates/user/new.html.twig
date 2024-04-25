@@ -4,18 +4,22 @@
 
 {% block body %}
     <div class="container mx-auto px-4 mt-4">
-        <div class="my-2">
-            <h1> Gestion des administrateurs </h1>
+        <div class="mt-2 mb-10">
+            <h1 class="text-3xl"> Gestion des administrateurs </h1>
         </div>
-        <div class="flex my-3">
-            <div class="w-1/2">
-                <h2> Nouvel utilisateur </h2>
-            </div>
+         <div class="bg-stone-100 rounded-xl">
+            <div class="border-b-2">
+                <div class="flex my-3 py-2 px-10">
+                    <div class="w-1/2">
+                        <h2 class="text-2xl"> Nouvel utilisateur </h2>
+                    </div>
 
-            <div class="flex w-1/2 justify-center">
-                <a href="{{path("backoffice_user_list")}}">Retour à la liste</a>
+                    <div class="flex w-1/2 justify-center">
+                        <a class="bg-purple-500 p-2 rounded-md text-sm text-slate-50 font-bold hover:bg-purple-600" href="{{path("backoffice_user_list")}}">Retour à la liste</a>
+                    </div>
+                </div>
             </div>
+            {{ include('user/_form.html.twig') }}
         </div>
-        {{ include('user/_form.html.twig') }}
     </div>
 {% endblock %}

@@ -1,6 +1,26 @@
-<div class="flex">
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <button class="btn">{{ button_label|default('Save') }}</button>
+<div class="flex py-5 px-10">
+    {{ form_start(form, {'attr' : { 'class' : 'w-full '} }) }} 
+
+        <div>
+            {{ form_errors(form) }}
+        </div>
+
+        <div class="flex w-3/4 justify-between mb-20">
+
+            <div class="w-2/5">
+                {{ form_row(form.email, {'label': "Email admin"}) }}
+            </div>
+
+            <div class="w-2/5">
+                {{ form_row(form.password, {'label': "Mot de passe"}) }}
+            </div>
+
+        </div>
+
+        <div  class="w-1/5 mb-20">
+            {{ form_row(form.roles, {'label': "Roles"}) }}
+        </div>
+
+        <button class="bg-sky-500 p-2 rounded-md text-sm text-slate-50 font-bold hover:bg-sky-600" >{{ button_label|default('Enregistrer') }}</button>
     {{ form_end(form) }}
 </div>
