@@ -21,6 +21,23 @@ class RiddleCardRepository extends ServiceEntityRepository
         parent::__construct($registry, RiddleCard::class);
     }
 
+    public function findAllIds(){
+        return $this->createQueryBuilder('r')
+            ->select('r.id')
+            ->getQuery()
+            ->getSingleColumnResult()
+        ;
+    }
+
+    public function findRiddlesInIds(array $ids){
+        return $this->createQueryBuilder('r')
+            ->where("r.id IN(:ids)")
+            ->setParameter("ids", $ids)
+            ->getQuery()
+            ->getArrayResult()
+        ;
+    }
+
 //    /**
 //     * @return RiddleCard[] Returns an array of RiddleCard objects
 //     */

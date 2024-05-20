@@ -12,6 +12,9 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 #[Vich\Uploadable]
 class RiddleCard
 {
+
+    public const RIDDLE_QUESTIONNAIRE_LENGTH = 4;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -22,9 +25,6 @@ class RiddleCard
 
     #[ORM\Column(length: 255)]
     private ?string $name = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $picture = null;
 
     // NOTE: This is not a mapped field of entity metadata, just a simple property.
     #[Vich\UploadableField(mapping: 'riddleCard', fileNameProperty: 'imageName', size: 'imageSize')]
@@ -64,18 +64,6 @@ class RiddleCard
     public function setName(string $name): static
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getPicture(): ?string
-    {
-        return $this->picture;
-    }
-
-    public function setPicture(?string $picture): static
-    {
-        $this->picture = $picture;
 
         return $this;
     }

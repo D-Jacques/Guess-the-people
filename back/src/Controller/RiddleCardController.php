@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
 #[Route("/backoffice/riddle", name: "backoffice_riddle_")]
 class RiddleCardController extends AbstractController {
@@ -51,11 +52,13 @@ class RiddleCardController extends AbstractController {
     }
 
     #[Route("/edit/{riddleCard}", name: 'edit')]
-    public function edit(RiddleCard $riddleCard, Request $request, EntityManagerInterface $em){
+    public function edit(RiddleCard $riddleCard, Request $request, EntityManagerInterface $em, UploaderHelper $uploaderHelper){
 
         $form = $this->createForm(RiddleCardType::class, $riddleCard);
 
         $form->handleRequest($request);
+
+        dump($uploaderHelper->asset($riddleCard, 'imageFile'));
 
         if($form->isSubmitted() && $form->isValid()){
 
