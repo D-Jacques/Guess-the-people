@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import { RadioInput } from './components/RadioInput';
+import { fetchRiddle } from './functions/FetchRiddle';
 
 function App() {
 
@@ -12,53 +11,30 @@ function App() {
   const [isBadAnswer, setIsBadAnswer] = useState(false);
   const [responses, setResponses] = useState({});
   const [isLoadingData, setIsLoadingData] = useState(true);
-  // const responses = [
-  //   {"id" : "repA", "label" : "Réponse A", "isGoodAnswer" : false, "description": "Je suis un inventeur"},
-  //   {"id" : "repB", "label" : "Réponse B", "isGoodAnswer" : false, "description": "Je suis un chanteur"},
-  //   {"id" : "repC", "label" : "Réponse C", "isGoodAnswer" : true, "description": "Je suis un célèbre médecin", "picture" : "https://127.0.0.1:8000/images/riddleCard/raccoon-6645f6b9db401105818082.jpg"},
-  //   {"id" : "repD", "label" : "Réponse D", "isGoodAnswer" : false, "description": "Je suis un aviateur"}
-  // ];
-
-  // useEffect(() => {
-  //   console.log(selectedResponse)
-  // }, [selectedResponse]);
 
   /**
    * Reset the game and reload a new riddle
    */
   function handleReloadRiddle(){
-    // LANCER UNE QUERY POUR CHERCHER UNE DEVINETTE ET 3 AUTRES REPONSES
+    setIsLoadingData(true);
+    fetchRiddle(urlBase, setResponses, setIsLoadingData);
     setSelectedResponse(null);
     setIsGoodAnswer(false);
   }
 
   useEffect(() => {
-    fetch(urlBase+"/riddle/get-riddle-questionnaire",
-      {
-        method: "GET",
-        headers: {
-          'Content-type' : 'application/json'
-        },
-      }
-    ).then((res) => {
-      return res.json()
-    }).then((data) => {
-      setResponses(data);
-      setIsLoadingData(false);
-    });
+    fetchRiddle(urlBase, setResponses, setIsLoadingData);
   }, []);
 
 
   /**
    * Called when we hit the submit button when we're trying to guess the riddle
    * if the answer is right, we show "good answer screen" 
-   * @returns 
    */
   function handleSubmit(){
     if(selectedResponse.isGoodAnswer){
       setIsGoodAnswer(true);
       setIsBadAnswer(false);
-      return true;
     } else {
       setIsBadAnswer(true);
     }
@@ -74,6 +50,10 @@ function App() {
 
   function displayRiddleDescription(){
     return responses.find((response) => response.isGoodAnswer === true).description;
+  }
+
+  function displayRiddlePicture(riddlePicture){
+    return riddlePicture ? "https://127.0.0.1:8000/images/riddleCard/"+riddlePicture : ""
   }
 
   return (
@@ -98,9 +78,9 @@ function App() {
               </p>
 
                 {
-                  responses.map((response) => 
+                  responses.map(response =>( 
                     <RadioInput key={response.id} response={response} onCheck={handleResponseCheck} />
-                  )
+                  ))
                 }
                 
                 { selectedResponse && 
@@ -118,7 +98,7 @@ function App() {
               
               <div className='w-1/2 flex justify-around mx-auto mb-5'>
                 <div className='photo-area' style={{
-                  backgroundImage: `url(${"https://127.0.0.1:8000/images/riddleCard/"+selectedResponse.imageName})`,
+                  backgroundImage: `url(${displayRiddlePicture(selectedResponse.imageName)})`,
                   backgroundRepeat: "none",
                   backgroundSize: "cover"
                 }}>
