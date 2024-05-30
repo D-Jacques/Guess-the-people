@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\RiddleCardRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 // use Vich\UploaderBundle\Entity\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -21,9 +22,16 @@ class RiddleCard
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length(
+        min:35,
+        max:255,
+        minMessage: "La description doit faire un minimum de 35 caractères",
+        maxMessage: "La description ne peut pas avoir une taille au delà de 255 caractères",
+    )]
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $name = null;
 
     // NOTE: This is not a mapped field of entity metadata, just a simple property.

@@ -58,8 +58,6 @@ class RiddleCardController extends AbstractController {
 
         $form->handleRequest($request);
 
-        dump($uploaderHelper->asset($riddleCard, 'imageFile'));
-
         if($form->isSubmitted() && $form->isValid()){
 
             $em->flush($riddleCard);

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
-import { RadioInput } from './components/RadioInput';
 import { fetchRiddle } from './functions/FetchRiddle';
+import { Questionnary } from './components/Questionnary';
+import { GoodAnswer } from './components/GoodAnswer';
 
 function App() {
 
@@ -71,47 +72,18 @@ function App() {
         {/* Game area  A METTRE DANS UN COMPONENT */}
         <div className='game-zone w-11/12 mx-auto p-5 bg-slate-50'>
           { !isGoodAnswer &&
-            // Placer dans un composant ?
-            <>
-              <p className='my-15 py-10'>
-                { displayRiddleDescription() }
-              </p>
-
-                {
-                  responses.map(response =>( 
-                    <RadioInput key={response.id} response={response} onCheck={handleResponseCheck} />
-                  ))
-                }
-                
-                { selectedResponse && 
-                  <div className='w-1/4 mx-auto'>
-                    <button className='w-full bg-cyan-200 py-2 hover:bg-cyan-300' onClick={handleSubmit}>submit</button>
-                  </div> 
-                }
-            </>
+            <Questionnary 
+              displayRiddleDescription={displayRiddleDescription} 
+              responses={responses} 
+              selectedResponse={selectedResponse}
+              handleSubmit={handleSubmit}
+              handleResponseCheck={handleResponseCheck}/>
           }
-          {
-            isGoodAnswer &&
-            // Placer dans un composant ?
-            <>
-              <h1 className='text-center my-3 w-2/3 mx-auto px-5 py-3'>BONNE REPONSE</h1>
-              
-              <div className='w-1/2 flex justify-around mx-auto mb-5'>
-                <div className='photo-area' style={{
-                  backgroundImage: `url(${displayRiddlePicture(selectedResponse.imageName)})`,
-                  backgroundRepeat: "none",
-                  backgroundSize: "cover"
-                }}>
-
-                </div>
-
-                <h2 className='content-center text-2xl'>{selectedResponse.name}</h2>
-              </div>
-
-              <div className='w-1/4 mx-auto'>
-                <button className='w-full bg-cyan-200 py-2 hover:bg-cyan-300' onClick={handleReloadRiddle}> Une autre ! </button>
-              </div>
-            </> 
+          { isGoodAnswer &&
+            <GoodAnswer 
+              displayRiddlePicture={displayRiddlePicture}
+              handleReloadRiddle={handleReloadRiddle}
+              selectedResponse={selectedResponse}/>
           }
         </div>        
 

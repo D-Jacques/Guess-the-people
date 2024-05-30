@@ -21,7 +21,7 @@ class RiddleCardRepository extends ServiceEntityRepository
         parent::__construct($registry, RiddleCard::class);
     }
 
-    public function findAllIds(){
+    public function findAllIds(): array {
         return $this->createQueryBuilder('r')
             ->select('r.id')
             ->getQuery()
@@ -29,7 +29,7 @@ class RiddleCardRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findRiddlesInIds(array $ids){
+    public function findRiddlesInIds(array $ids): array{
         return $this->createQueryBuilder('r')
             ->where("r.id IN(:ids)")
             ->setParameter("ids", $ids)
