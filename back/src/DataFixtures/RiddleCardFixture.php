@@ -32,8 +32,7 @@ class RiddleCardFixture extends Fixture
         for ($i=0; $i < 3; $i++) { 
             $riddle = (new RiddleCard())
             ->setName($fixtureDatas[$i]["name"])
-            ->setDescription($fixtureDatas[$i]["description"])
-            ->setPicture($fixtureDatas[$i]["picture"]);
+            ->setDescription($fixtureDatas[$i]["description"]);
 
             $manager->persist($riddle);
         }
